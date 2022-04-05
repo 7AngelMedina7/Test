@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
+  <ion-toolbar color="danger">
+    <ion-title class="centrar">
+      Iniciar Sesion
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -11,10 +11,35 @@
     <ion-toolbar>
       <ion-title size="large">Blank</ion-title>
     </ion-toolbar>
-  </ion-header>
+  </ion-header>                 
 
   <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title class="centrar">
+          Iniciar Sesion
+        </ion-card-title>
+        <div class="user">
+          <img src="../../assets/images/pngegg.png" alt="" >
+        </div>
+      </ion-card-header>
+      <form onsubmit="saludar()">
+        <ion-item>
+          <ion-label for="user-name" position="floating">Nombre de Usuario</ion-label>
+          <ion-input type="text" id="user-name" name="user-name"></ion-input>
+        </ion-item>
+        
+        <ion-item>
+          <ion-label for="password" position="floating">
+            Password
+          </ion-label>
+          <ion-input type="password" id="password" name="password">
+          </ion-input>
+          <ion-button type="submit" value="Iniciar" (click)="saludar()" routerLink="/paginas/index/index">
+            Iniciar
+          </ion-button>
+        </ion-item>
+      </form>
+    </ion-card>
   </div>
 </ion-content>
