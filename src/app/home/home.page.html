@@ -23,22 +23,18 @@
           <img src="../../assets/images/pngegg.png" alt="" >
         </div>
       </ion-card-header>
-      <form onsubmit="saludar()">
+
+
+      <form (ngSubmit)="iniciar()">
         <ion-item>
-          <ion-label for="user-name" position="floating">Nombre de Usuario</ion-label>
-          <ion-input type="text" id="user-name" name="user-name"></ion-input>
+          <ion-label position="floating">User Name</ion-label>
+          <ion-input type="text" [(ngModel)]="user.name" name="name"></ion-input>
         </ion-item>
-        
         <ion-item>
-          <ion-label for="password" position="floating">
-            Password
-          </ion-label>
-          <ion-input type="password" id="password" name="password">
-          </ion-input>
-          <ion-button type="submit" value="Iniciar" (click)="saludar()" routerLink="/paginas/index/index">
-            Iniciar
-          </ion-button>
+          <ion-label position="floating">Password</ion-label>
+          <ion-input type="password" [(ngModel)]="user.password" name="description"></ion-input>
         </ion-item>
+        <ion-button ion-button type="submit" block>Add Todo</ion-button>
       </form>
     </ion-card>
   </div>

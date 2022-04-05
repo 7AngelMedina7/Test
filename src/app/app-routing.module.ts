@@ -12,9 +12,10 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'index',
-    loadChildren: () => import('./paginas/index/principal/principal.component')
+    path: 'pagina',
+    loadChildren: () => import('./pagina/pagina.module').then( m => m.PaginaPageModule)
   }
+
 ];
 
 @NgModule({
