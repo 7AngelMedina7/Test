@@ -25,17 +25,34 @@
       </ion-card-header>
 
 
-      <form (ngSubmit)="iniciar()">
+      <form [formGroup]="ionicForm" (ngSubmit)="iniciar()">
         <ion-item>
-          <ion-label position="floating">User Name</ion-label>
-          <ion-input type="text" [(ngModel)]="user.name" name="name"></ion-input>
+          <ion-label position="floating" for="email">User Name</ion-label>
+          <ion-input type="text" id="email" formControlName="email" required minlength="10"></ion-input>
         </ion-item>
+        <!-- password -->
         <ion-item>
-          <ion-label position="floating">Password</ion-label>
-          <ion-input type="password" [(ngModel)]="user.password" name="description"></ion-input>
+          <ion-label position="floating" for="password">Password</ion-label>
+          <ion-input type="password" id="password" formControlName="password" required minlength="9"></ion-input>
         </ion-item>
-        <ion-button ion-button type="submit" block>Add Todo</ion-button>
+        <!-- submit -->
+        <ion-button ion-button type="submit" block>Submit</ion-button>
       </form>
     </ion-card>
+
+
+    <ion-list>
+      <ion-item>
+        <ion-icon slot="start" name="moon"></ion-icon>
+        <ion-label>Dark Mode</ion-label>
+        <ion-toggle slot="end"
+                    [ngModel]="darkMode"
+                    (ionChange)="cambio()"></ion-toggle>
+      </ion-item>
+    </ion-list>
+    <!-- alerta -->
+    <!-- <span class=" error ion-padding" *ngIf="errorControl.name.errors?.required && estaActivado">
+      Email es requerido
+    </span> -->
   </div>
 </ion-content>

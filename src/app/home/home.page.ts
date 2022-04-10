@@ -1,25 +1,37 @@
-import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
+import { group } from 'console';
+import { Button } from 'protractor';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage {
-  saludar(){
-    alert("good")
+export class HomePage implements OnInit{
+  estaActivado=false;
+  darkMode:boolean= false;
+  ionicForm: FormGroup;
+  constructor(public router: Router, private formBuilder : FormBuilder){
   }
-  constructor(public router: Router){
-
+  ngOnInit(): void {
+    this.ionicForm = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.minLength(10), Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(8)]]
+    })
   }
-  user={
-    name: new FormControl('', Validators.required) ,
-    password: new FormControl('', Validators.required)
+  
+  
+  cambio(){
+    this.darkMode = !this.darkMode
+    console.log(this.darkMode)
+    document.body.classList.toggle('body-dark')
   }
   iniciar(){
-    console.log(this.user)
-    this.router.navigate(['/pagina'])
+    if(this.ionicForm.valid){
+      this.router.navigate(['/pagina'])
+    }
+    console.log(this.ionicForm.value)
   }
 }
