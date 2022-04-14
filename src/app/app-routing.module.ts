@@ -14,10 +14,6 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'pagina',
-    loadChildren: () => import('./pagina/pagina.module').then( m => m.PaginaPageModule)
-  },
-  {
     path: 'tabs',
     loadChildren: () => import('./tabs/tabs.module').then(m=> m.TabsPageModule)
   }

@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Router, RouterLink } from '@angular/router';
 import { group } from 'console';
 import { Button } from 'protractor';
+import { DarkModeService } from '../services/dark-mode.service';
 
 @Component({
   selector: 'app-home',
@@ -10,27 +11,24 @@ import { Button } from 'protractor';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit{
-  estaActivado=false;
-  darkMode:boolean= false;
   ionicForm: FormGroup;
-  constructor(public router: Router, private formBuilder : FormBuilder){
+  constructor(public router: Router, private formBuilder : FormBuilder, private modoNoche:DarkModeService ){
   }
   ngOnInit(): void {
     this.ionicForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.minLength(10), Validators.email]],
       password: ['', [Validators.required, Validators.minLength(8)]]
     })
+    console.log(this.checkDarkMode);
+    
   }
-  
-  
-  cambio(){
-    this.darkMode = !this.darkMode
-    console.log(this.darkMode)
-    document.body.classList.toggle('body-dark')
+  checkDarkMode:boolean=this.modoNoche.darkMode
+  darkMode(){
+    this.modoNoche.changeMode()
   }
-  iniciar(){
+   iniciar(){
     if(this.ionicForm.valid){
-      this.router.navigate(['/pagina'])
+      this.router.navigate(['/tabs/inicio'])
     }
     console.log(this.ionicForm.value)
   }
